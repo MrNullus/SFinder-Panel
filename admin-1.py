@@ -86,12 +86,12 @@ inicio = time.time()
 
 try:
         while True:
-                with open("pages.txt", "r") as direct: #acessando o arquivo que contém os diretórios
+                with open("pages-1.txt", "r") as direct: #acessando o arquivo que contém os diretórios
                         for i in direct.readlines(): #passando pelo objeto que possui os diretórios
                                 if i[0] == "/": #verificando se o diretório possui "/"(isso causa erro na requisição)
                                         content = protocol + url + i
                                 elif i[0] != "/": 
-                                        content = protocol + url + "/" + i
+                                        content = protocol + url + "/"
 
                                 with open("user-agents.txt", "r") as ag_list: #abrindo o arquivo que possui os agents
                                         #for ag in ag_list.readlines(): #passando pelo objeto que contém os agents
@@ -109,13 +109,16 @@ try:
                                         if stats == 200:
                                                 valid_directs.append(content) #adicionando os direótios válidos na lista
                                                 print(f"{Fore.GREEN}Página encontrada!! >>> {content}")
+                                                break
                                                         
                                         elif stats == 302:
                                                 valid_redirect.append(content)
                                                 print(f"{Fore.YELLOW}Redirecionamento de página >>> {content}")
+                                                break
 
                                         elif stats == 404:
                                                 print(f"{Fore.RED}Página não encontrada!![X] => {content}")
+                                                break
                         ag_list.close() 
                 direct.close()
                 break

@@ -2,7 +2,7 @@ from ensurepip import version
 from http.server import executable
 from ssl import Options
 from unicodedata import name
-from cx_Freeze import setup, Executable
+from cx_Freeze import setup, executable
 
 
 dependencies = {"packages": ["requests"], "includes": ["colorama"], "includes": ["time"], "includes": ["os"], "includes": ["platform"]}
@@ -12,5 +12,5 @@ setup(
     version = "1.0",
     description = "GitHub:https://github.com/SrStark666",
     options = {"build_exe": dependencies},
-    executables = [Executable("admin.py")]
+    executables = [executable("admin.py")]
 )
